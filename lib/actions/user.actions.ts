@@ -10,7 +10,7 @@ import { handleError } from "../utils";
 export async function createUser(user: CreateUserParams) {
     try {
         await connectToDatabase();
-        
+
         const newUser = await User.create(user);
 
         return JSON.parse(JSON.stringify(newUser));
@@ -24,6 +24,7 @@ export async function getUserById(userId: string) {
     try {
         await connectToDatabase();
 
+        console.log("User ID" , userId);
         const user = await User.findOne({ clerkId: userId });
 
         if (!user) throw new Error("User not found");
